@@ -1,0 +1,10 @@
+{
+  "domain": "clever-lending.us.auth0.com",
+  "clientId": "J37snUkwKMnteVQ8crPkgxkfPP1Gg9qa",
+  "authorizationParams": {
+    "audience": ""
+  },
+  "apiUri": "",
+  "appUri": "https://clever-lending.com",
+  "errorPath": "/error"
+}
