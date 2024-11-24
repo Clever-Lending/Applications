@@ -1,21 +1,45 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './components/components.module';
-import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './pages/home/home.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ErrorComponent } from './pages/error/error.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeroComponent } from './components/hero/hero.component';
+import { HomeContentComponent } from './components/home-content/home-content.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ExternalApiComponent } from './pages/external-api/external-api.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import { AppRoutingModule } from './app-routing.module';
+import {API_BASE_URL} from "./api/api";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ProfileComponent,
+    NavBarComponent,
+    FooterComponent,
+    HeroComponent,
+    HomeContentComponent,
+    LoadingComponent,
+    ExternalApiComponent,
+    ErrorComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule,
-    SharedModule,
+    HttpClientModule,
+    NgbModule,
+    HighlightModule,
+    FontAwesomeModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
@@ -24,6 +48,10 @@ import { AppRoutingModule } from './app-routing.module';
     }),
   ],
   providers: [
+    {
+      provide: API_BASE_URL,
+      useValue: 'http://localhost:3010'
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
