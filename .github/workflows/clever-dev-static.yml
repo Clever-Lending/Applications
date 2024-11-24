@@ -21,6 +21,7 @@ jobs:
           lfs: false
 
       - name: Install Dependencies
+        working-directory: ./clever
         run: npm install --loglevel=error
 
       - name: Build And Deploy
