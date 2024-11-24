@@ -61,7 +61,6 @@
           </li>
           <!-- / Login button -->
 
-
           <!-- Fullsize dropdown: show if authenticated -->
           <li
             class="nav-item dropdown"
@@ -79,7 +78,7 @@
                 [src]="user.picture"
                 alt="Profile picture"
                 class="nav-user-profile rounded-circle"
-                style="width: 75px;"
+                style="width: 75px"
               />
             </a>
             <div class="dropdown-menu dropdown-menu-left" ngbDropdownMenu>
@@ -90,10 +89,7 @@
               <a routerLink="/profile" class="dropdown-item dropdown-profile">
                 <fa-icon [icon]="faUser" class="mr-3"></fa-icon> Profile
               </a>
-              <button
-                (click)="logout()"
-                class="btn btn-link dropdown-item"
-              >
+              <button (click)="logout()" class="btn btn-link dropdown-item">
                 <fa-icon [icon]="faPowerOff" class="mr-3"></fa-icon> Log out
               </button>
             </div>
@@ -113,7 +109,6 @@
           >
             Log in
           </button>
-
         </ul>
         <!-- /Responsive login button -->
 
@@ -121,7 +116,7 @@
         <ul
           class="navbar-nav d-md-none justify-content-between"
           *ngIf="auth.user$ | async as user"
-          style="min-height: 170px;"
+          style="min-height: 170px"
         >
           <li class="nav-item">
             <span class="user-info">
@@ -129,7 +124,7 @@
               <img
                 alt="Profile picture"
                 class="nav-user-profile d-inline-block rounded-circle mr-3"
-                style="width: 75px;"
+                style="width: 75px"
                 [src]="user.picture"
               />
               <!-- Show the user's full name from the id token here -->
@@ -143,12 +138,7 @@
 
           <li>
             <fa-icon [icon]="faPowerOff" class="mr-3"></fa-icon>
-            <button
-              class="btn btn-link p-0"
-              (click)="logout()"
-            >
-              Log out
-            </button>
+            <button class="btn btn-link p-0" (click)="logout()">Log out</button>
           </li>
         </ul>
       </div>
