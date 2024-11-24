@@ -15,6 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
+      - name: Configure Git Safe Directory
+        run: git config --global --add safe.directory /github/workspace
+
       - uses: actions/checkout@v3
         with:
           submodules: true
@@ -24,7 +27,11 @@ jobs:
         working-directory: ./clever
         run: npm install --loglevel=error
 
-      - name: Build And Deploy
+      - name: Build Angular App
+        working-directory: ./clever
+        run: npm run build -- --prod
+
+      - name: Deploy to Azure
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -32,7 +39,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "./clever" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "dist/clever" # Built app content directory - optional
