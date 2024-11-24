@@ -33,7 +33,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/staticwebapp_config.json",
+              "src/staticwebapp.config.json",
               {
                 "glob": "**/*",
                 "input": "public",
