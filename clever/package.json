@@ -14,7 +14,7 @@
     "dev": "npm-run-all --parallel start server:api",
     "prod": "npm-run-all --parallel server:app server:api",
     "postbuild": "npm run copy:server",
-    "copy:server": "copyfiles server.js src/assets/auth_config.json dist/clever"
+    "copy:server": "copyfiles server.js src/auth_config.json dist/clever"
   },
   "private": true,
   "dependencies": {
