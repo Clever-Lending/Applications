@@ -5,6 +5,6 @@
     "audience": ""
   },
   "apiUri": "",
-  "appUri": "https://clever-lending.com",
+  "appUri": "https://purple-coast-042ee500f.5.azurestaticapps.net",
   "errorPath": "/error"
 }
