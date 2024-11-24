@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light px-0 py-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-gray-100 px-0 py-3">
   <div class="container-xl">
     <!-- Logo -->
     <a class="navbar-brand" href="#">
@@ -32,18 +32,73 @@
         <a class="nav-item nav-link" href="#">Pricing</a>
       </div>
       <!-- Right navigation -->
-      <div class="navbar-nav ms-lg-4">
+      <div
+        *ngIf="(auth.isAuthenticated$ | async) === false"
+        class="navbar-nav ms-lg-4"
+      >
         <button (click)="loginWithRedirect()" class="nav-item nav-link">
           Sign in
         </button>
       </div>
       <!-- Action -->
-      <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
+      <div
+        *ngIf="auth.user$ | async as user"
+        class="d-flex align-items-lg-center mt-3 mt-lg-0"
+      >
         <button
           (click)="logout()"
           class="btn btn-sm btn-primary w-full w-lg-auto"
         >
           Log out
+        </button>
+      </div>
+    </div>
+    <!-- Avatar -->
+    <div
+      *ngIf="auth.user$ | async as user"
+      class="dropdown order order-lg-last ms-lg-4"
+    >
+      <a
+        class="d-block"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <div class="avatar avatar bg-warning rounded-circle text-white">
+          <img
+            alt="Profile picture"
+            class="nav-user-profile d-inline-block rounded-circle mr-3"
+            style="width: 105px"
+            [src]="user.picture"
+          />
+        </div>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end">
+        <div class="dropdown-header">
+          <h6 class="d-inline-block">{{ user.name }}</h6>
+        </div>
+        <a href="#!" class="dropdown-item">
+          <i class="ni ni-single-02"></i>
+          <span>My profile</span>
+        </a>
+        <a href="#!" class="dropdown-item">
+          <i class="ni ni-settings-gear-65"></i>
+          <span>Settings</span>
+        </a>
+        <a href="#!" class="dropdown-item">
+          <i class="ni ni-calendar-grid-58"></i>
+          <span>Activity</span>
+        </a>
+        <a href="#!" class="dropdown-item">
+          <i class="ni ni-support-16"></i>
+          <span>Support</span>
+        </a>
+        <div class="dropdown-divider"></div>
+        <button (click)="logout()" class="dropdown-item">
+          <i class="ni ni-user-run"></i>
+          <span>Logout</span>
         </button>
       </div>
     </div>
