@@ -18,7 +18,7 @@ import { ExternalApiComponent } from './pages/external-api/external-api.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
-import {API_BASE_URL} from "./api/api";
+import { API_BASE_URL } from './api/api';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import {API_BASE_URL} from "./api/api";
     HomeContentComponent,
     LoadingComponent,
     ExternalApiComponent,
-    ErrorComponent
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,16 +41,22 @@ import {API_BASE_URL} from "./api/api";
     HighlightModule,
     FontAwesomeModule,
     AuthModule.forRoot({
-      ...env.auth,
-      httpInterceptor: {
-        ...env.httpInterceptor,
+      domain: 'https://clever-learning-centers.us.auth0.com',
+      clientId: 'AmxbLTF4gQqQkszYu9GZpIBsa1Gpj6sL',
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+        audience: 'http://localhost:3010',
       },
+      httpInterceptor: {
+        allowedList: ['http://localhost:3010'],
+      },
+      errorPath: '/error',
     }),
   ],
   providers: [
     {
       provide: API_BASE_URL,
-      useValue: 'http://localhost:3010'
+      useValue: 'http://localhost:3010',
     },
     {
       provide: HTTP_INTERCEPTORS,
