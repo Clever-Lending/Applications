@@ -41,14 +41,14 @@ import { API_BASE_URL } from './api/api';
     HighlightModule,
     FontAwesomeModule,
     AuthModule.forRoot({
-      domain: 'https://clever-learning-centers.us.auth0.com',
-      clientId: 'AmxbLTF4gQqQkszYu9GZpIBsa1Gpj6sL',
+      domain: 'https://clever-lending.us.auth0.com',
+      clientId: 'J37snUkwKMnteVQ8crPkgxkfPP1Gg9qa',
       authorizationParams: {
         redirect_uri: window.location.origin,
-        audience: 'http://localhost:3010',
+        audience: 'https://clever-lending.com/api',
       },
       httpInterceptor: {
-        allowedList: ['http://localhost:3010'],
+        allowedList: ['https://clever-lending.com/api'],
       },
       errorPath: '/error',
     }),
@@ -56,7 +56,7 @@ import { API_BASE_URL } from './api/api';
   providers: [
     {
       provide: API_BASE_URL,
-      useValue: 'http://localhost:3010',
+      useValue: 'https://clever-lending.com/api',
     },
     {
       provide: HTTP_INTERCEPTORS,
