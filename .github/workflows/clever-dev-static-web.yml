@@ -17,21 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
           submodules: true
           lfs: false
-      - name: Allow Git to use the workspace
-        run: git config --global --add safe.directory /github/workspace
-      - name: Check if HEAD~1 is accessible
-        id: git_check
-        run: |
-          if git rev-parse HEAD~1 >/dev/null 2>&1; then
-            echo "accessible=true" >> $GITHUB_ENV
-          else
-            echo "accessible=false" >> $GITHUB_ENV
-          fi
       - name: Build And Deploy
-        if: env.accessible == 'true'
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -47,8 +35,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Close Pull Request Job
     steps:
-      - name: Allow Git to use the workspace
-        run: git config --global --add safe.directory /github/workspace
       - name: Close Pull Request
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
